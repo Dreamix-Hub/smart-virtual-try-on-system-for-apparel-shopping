@@ -1,9 +1,10 @@
 # backend
 backend/.env
+backend/.venv
 
 # ml-service
 ml-service/.env
-
+ml-service/.venv
 
 
 # Byte-compiled / optimized / DLL files
