@@ -1,3 +1,11 @@
+# backend
+backend/.env
+
+# ml-service
+ml-service/.env
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -216,3 +224,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
