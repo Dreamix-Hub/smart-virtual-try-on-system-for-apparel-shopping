@@ -1,3 +1,5 @@
+.vscode
+
 # backend
 backend/.env
 backend/.venv
