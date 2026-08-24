@@ -1,4 +1,4 @@
-from backend.common.responses import (
+from common.responses import (
     ErrorDetail,
     ErrorResponse,
     SuccessResponse

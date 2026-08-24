@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from backend.core.base_exception import AppException
+from core.base_exception import AppException
 
-from backend.common.responses import (
+from common.responses import (
     ErrorResponse,
     ErrorDetail,
 )

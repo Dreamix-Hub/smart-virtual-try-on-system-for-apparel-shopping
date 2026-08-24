@@ -6,7 +6,9 @@ class Settings(BaseSettings):
         env_file='.env',
         env_file_encoding='utf-8',
     )
-    
+    CLOUD_NAME: str
+    API_KEY: SecretStr
+    API_SECRET: SecretStr
     CLOUDINARY_URL: SecretStr    
     
 settings = Settings() #type: ignore

@@ -1,4 +1,5 @@
 from pydantic import BaseModel, HttpUrl
 
-class ImageUploadRequest(BaseModel):
-    pass
+class ImageUploadResponse(BaseModel):
+    self_url: str
+    garment_url: str
