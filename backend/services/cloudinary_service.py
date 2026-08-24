@@ -14,6 +14,7 @@ cloudinary_config = cloudinary.config(
 
 async def image_upload(file_bytes: UploadFile, folder: str) -> str:
     """ upload image to cloudinary and return its url """
+    
     image_url = cloudinary.uploader.upload(
         file=file_bytes.file,
         folder=folder,

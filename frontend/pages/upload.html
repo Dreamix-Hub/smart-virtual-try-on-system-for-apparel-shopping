@@ -4,32 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Images</title>
+    <title>Upload Images | Smart Virtual Try-On</title>
+    <link rel="stylesheet" href="../css/upload.css">
 </head>
 
 <body>
-    <form id="upload-form" action="" method="post" enctype="multipart/form-data">
-        <label for="self_image">Choose self image:</label>
-        <input type="file" id="self_image" name="self_image" accept="image/*" required>
-        <img id="self_preview" src="#" alt="Self image preview" style="display:none; max-width: 300px;">
+    <div class="upload-container">
+        <div class="upload-header">
+            <h1>Virtual Try-On</h1>
+            <p>Upload your image and the garment to see the magic.</p>
+        </div>
+        
+        <form id="upload-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="self_image">Choose Self Image</label>
+                <input type="file" id="self_image" name="self_image" accept="image/*" required>
+                <img id="self_preview" class="image-preview" src="#" alt="Self image preview" style="display:none;">
+            </div>
 
-        <label for="garment_image">Choose garment image:</label>
-        <input type="file" id="garment_image" name="garment_image" accept="image/*" required>
-        <img id="garment_preview" src="#" alt="Garment image preview" style="display:none; max-width: 300px;">
+            <div class="form-group">
+                <label for="garment_image">Choose Garment Image</label>
+                <input type="file" id="garment_image" name="garment_image" accept="image/*" required>
+                <img id="garment_preview" class="image-preview" src="#" alt="Garment image preview" style="display:none;">
+            </div>
 
-        <label for="category">Select category:</label>
-        <select id="category" name="category" required>
-            <option value="" selected disabled>Choose a category</option>
-            <option value="kurta">Kurta</option>
-            <option value="shalwar_kameez">Shalwar Kameez</option>
-            <option value="waistcoat">Waistcoat</option>
-            <option value="sharwani">Sharwani</option>
-        </select>
+            <div class="form-group">
+                <label for="category">Select Category</label>
+                <select id="category" name="category" required>
+                    <option value="" selected disabled>Choose a category</option>
+                    <option value="kurta">Kurta</option>
+                    <option value="shalwar_kameez">Shalwar Kameez</option>
+                    <option value="waistcoat">Waistcoat</option>
+                    <option value="sharwani">Sharwani</option>
+                </select>
+            </div>
 
-        <button type="submit">Upload</button>
-    </form>
+            <button type="submit" class="submit-btn">Try It On ✨</button>
+        </form>
+    </div>
+
+    <script src="../js/upload.js"></script>
 </body>
-
-<script src="../js/upload.js"></script>
 
 </html>
