@@ -4,7 +4,7 @@ from routers.tryon import router
 
 app = FastAPI()
 
-app.include_router(router, tags=['upload-images'], prefix='/api')
+app.include_router(router, tags=['upload-images'], prefix='/api/try-on')
 
 
 @app.get('/')

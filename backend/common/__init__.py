@@ -3,9 +3,11 @@ from common.responses import (
     ErrorResponse,
     SuccessResponse
 )
+from common.image_exception import LargeImageFileSizeException
 
 __all__ = [
     'ErrorDetail',
     'ErrorResponse',
     'SuccessResponse',
+    'LargeImageFileSizeException',
 ]
