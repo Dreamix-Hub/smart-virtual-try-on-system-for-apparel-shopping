@@ -55,11 +55,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
     const selfFile = selfImageInput.files[0];
     const garmentFile = garmentImageInput.files[0];
 
     if (selfFile && !isFileSizeValid(selfFile, MAX_FILE_SIZE_BYTES)) {
-      event.preventDefault();
       alert("Self image must be less than or equal to 5MB.");
       selfImageInput.value = "";
       clearPreview(selfPreview);
@@ -67,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (garmentFile && !isFileSizeValid(garmentFile, MAX_FILE_SIZE_BYTES)) {
-      event.preventDefault();
       alert("Garment image must be less than or equal to 5MB.");
       garmentImageInput.value = "";
       clearPreview(garmentPreview);
@@ -75,8 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (!selfImageInput.files.length || !garmentImageInput.files.length || !categorySelect.value) {
-      event.preventDefault();
       alert("Please provide self image, garment image, and select a category.");
+      return;
     }
+
+    alert("Images have been uploaded successfully.");
   });
 });
