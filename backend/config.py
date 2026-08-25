@@ -11,6 +11,6 @@ class Settings(BaseSettings):
     API_SECRET: SecretStr
     CLOUDINARY_URL: SecretStr    
     
-    max_image_upload_size_bytes: int = 1 * 1024 * 1024  # 5MB
+    max_image_upload_size_bytes: int = 5 * 1024 * 1024  # 5MB
     
 settings = Settings() #type: ignore

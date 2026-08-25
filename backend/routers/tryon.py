@@ -4,7 +4,12 @@ from common import SuccessResponse
 from models.schemas import ImageUploadResponse
 
 from services.cloudinary_service import image_upload
-from services.image_processor import read_file_size
+from services.image_processor import read_file_size, standardize_dimension
+
+from starlette.concurrency import run_in_threadpool
+from PIL import UnidentifiedImageError
+from common.image_exception import InvalidImageFileFormatException
+
 
 router = APIRouter()
 
@@ -17,14 +22,24 @@ async def upload_image(
 ): 
     self_content = await read_file_size(self_image)
     garment_content = await read_file_size(garment_image) 
-        
+    
+    try:
+        new_self = await run_in_threadpool(standardize_dimension, self_content)
+    except UnidentifiedImageError:
+        raise InvalidImageFileFormatException()
+    
+    try:
+        new_garment = await run_in_threadpool(standardize_dimension, garment_content)
+    except UnidentifiedImageError:
+        raise InvalidImageFileFormatException()
+    
     self_url = await image_upload(
-        file_bytes=self_image,
+        file_bytes=new_self,
         folder="tryon/self",
     )
     
     garment_url = await image_upload(
-        file_bytes=garment_image,
+        file_bytes=new_garment,
         folder='tryon/garment',
     )
     
