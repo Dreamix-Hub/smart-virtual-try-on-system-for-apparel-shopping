@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 
+from core.exceptions import register_exception_handlers
 from routers.tryon import router
 
 app = FastAPI()
+register_exception_handlers(app)
 
 app.include_router(router, tags=['upload-images'], prefix='/api/try-on')
 

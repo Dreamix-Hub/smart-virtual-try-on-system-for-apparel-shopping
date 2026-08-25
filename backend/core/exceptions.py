@@ -32,13 +32,13 @@ def register_exception_handlers(app: FastAPI):
         request: Request,
         exc: Exception,
     ):
+        response = ErrorResponse(
+            error=ErrorDetail(
+                code="INTERNAL_SERVER_ERROR",
+                message="Something went wrong.",
+            )
+        )
         return JSONResponse(
             status_code=500,
-            content={
-                "success": False,
-                "error": {
-                    "code": "INTERNAL_SERVER_ERROR",
-                    "message": "Something went wrong.",
-                },
-            },
+            content=response.model_dump(),
         )
