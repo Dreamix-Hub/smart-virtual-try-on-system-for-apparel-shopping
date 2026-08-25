@@ -1,6 +1,12 @@
-def main():
-    print("Hello from ml-service!")
+from fastapi import FastAPI
+from routers.generate import router
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    main()
+app.include_router(router, prefix="/api")
+
+@app.post('/')
+async def root():
+    return {
+        "message": "ml-service working..."
+    }
