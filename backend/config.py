@@ -13,4 +13,6 @@ class Settings(BaseSettings):
     
     max_image_upload_size_bytes: int = 5 * 1024 * 1024  # 5MB
     
+    ML_SERVICE_URL: str
+    
 settings = Settings() #type: ignore
