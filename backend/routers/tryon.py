@@ -34,6 +34,7 @@ async def upload_image(
     except UnidentifiedImageError:
         raise InvalidImageFileFormatException()
     
+    
     self_url = await image_upload(  # upload image to cloudinary
         file_bytes=new_self,
         folder="tryon/self",
