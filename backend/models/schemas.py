@@ -1,9 +1,9 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
-
+from uuid import UUID
 class ImageUploadResponse(BaseModel):
     self_url: str
     garment_url: str
@@ -22,7 +22,7 @@ class Category(str, Enum):
     SHARWANI = "sharwani"
 
 class JobResponse(BaseModel):
-    job_id: str
+    job_id: UUID
     status: JobStatus
     result_url: str | None = None
     error: str | None = None

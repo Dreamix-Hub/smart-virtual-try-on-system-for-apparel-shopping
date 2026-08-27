@@ -12,7 +12,10 @@ from PIL import UnidentifiedImageError
 from common.image_exception import InvalidImageFileFormatException
 
 from jobs.job_store import job_store
+from common.job_exceptions import JobNotFoundException
 from fastapi.background import BackgroundTasks
+
+from uuid import UUID
 
 router = APIRouter()
 
@@ -61,4 +64,15 @@ async def upload_image(
     
     return SuccessResponse(
         data=JobResponse.model_validate(job_store.get_job(job_id))
+    )
+
+@router.get('/{job_id}/status', response_model=SuccessResponse[JobResponse])
+async def check_job_status(job_id: UUID):
+    job = job_store.get_job(job_id=job_id)
+    
+    if job is None:
+        raise JobNotFoundException()
+    
+    return SuccessResponse(
+        data=JobResponse.model_validate(job)
     )
