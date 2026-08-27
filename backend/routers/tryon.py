@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, status
+from fastapi import APIRouter, UploadFile, status, Form
 
 from common import SuccessResponse
 from models.schemas import JobResponse, JobStatus
@@ -24,8 +24,8 @@ router = APIRouter()
 async def upload_image(
     self_image: UploadFile,
     garment_image: UploadFile,
-    category: str,
     background_tasks: BackgroundTasks,
+    category: str = Form(...),
 ): 
     # read and validate file size, should be <5MB
     self_content = await read_file_size(self_image)  
@@ -41,7 +41,7 @@ async def upload_image(
     # Create Job First (So we have the ID ready)
     job_id = job_store.create_job()
     
-    # 4. Upload to Cloudinary
+    # Upload to Cloudinary
     try:
         self_url = await image_upload(file_bytes=new_self, folder="tryon/self")
         garment_url = await image_upload(file_bytes=new_garment, folder="tryon/garment")

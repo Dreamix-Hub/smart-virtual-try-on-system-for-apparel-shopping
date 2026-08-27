@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     previewImage(garmentImageInput, garmentPreview);
   });
 
-  form.addEventListener("submit", function (event) {
+  form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const selfFile = selfImageInput.files[0];
@@ -79,6 +79,21 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    alert("Images have been uploaded successfully.");
+    const formData = new FormData();
+    formData.append("self_image", selfFile);
+    formData.append("garment_image", garmentFile);
+    formData.append("category", categorySelect.value);
+
+    try {
+      const result = await uploadImages(formData);
+      if (result.job_id) {
+        startPolling(result.job_id);
+        // Optional UI update
+      } else {
+        alert("Upload successful but no job ID returned.");
+      }
+    } catch (error) {
+      alert("Upload error: " + error.message);
+    }
   });
 });
