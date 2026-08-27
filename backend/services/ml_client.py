@@ -8,10 +8,10 @@ async def ml_service(job_id: UUID, self_url: str, garment_url: str, category: st
     then updates to DONE with result_url or FAILED upon completion.
     """
     
-    # 1. Immediately mark the job as PROCESSING so polling endpoints see it right away
+    # Immediately mark the job as PROCESSING so polling endpoints see it right away
     job_store.update_status(job_id=job_id, status=JobStatus.PROCESSING)
     
-    # 2. Use non-blocking httpx AsyncClient instead of requests
+    # Use non-blocking httpx AsyncClient instead of requests
     async with httpx.AsyncClient(timeout=120.0) as client:
         try:
             response = await client.post(
@@ -27,7 +27,7 @@ async def ml_service(job_id: UUID, self_url: str, garment_url: str, category: st
                 data = response.json()
                 result_url = data.get("result_url")
                 
-                # 3. Mark job as DONE once ML inference completes
+                # Mark job as DONE once ML inference completes
                 job_store.update_status(
                     job_id=job_id, 
                     status=JobStatus.DONE, 
