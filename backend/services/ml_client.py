@@ -1,7 +1,9 @@
 import requests
 from config import settings
+from jobs.job_store import job_store, JobStatus
 
-async def ml_service(self_url: str, garment_url: str, category: str):
+
+async def ml_service(job_id: str, self_url: str, garment_url: str, category: str):
     """ pass data to ml_service inference """
     
     response = requests.post(
@@ -13,4 +15,7 @@ async def ml_service(self_url: str, garment_url: str, category: str):
         }
     )
     
-    return response.status_code
+    if response.status_code == 200:
+        job_store.update_status(job_id=job_id, status=JobStatus.PROCESSING)
+    else:
+        job_store.update_status(job_id=job_id, status=JobStatus.FAILED, error=str(response.status_code))
