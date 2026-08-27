@@ -1,5 +1,6 @@
 import threading
 import uuid
+from uuid import UUID
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -10,11 +11,11 @@ class JobStore:
     """
 
     def __init__(self):
-        self._jobs: dict[str, dict] = {}
+        self._jobs: dict[UUID, dict] = {}
         self._lock = threading.Lock()
 
-    def create_job(self) -> str:
-        job_id = str(uuid.uuid4())
+    def create_job(self) -> UUID:
+        job_id = uuid.uuid4()
         with self._lock:
             self._jobs[job_id] = {
                 "job_id": job_id,
@@ -26,14 +27,14 @@ class JobStore:
             }
         return job_id
 
-    def get_job(self, job_id: str) -> Optional[dict]:
+    def get_job(self, job_id: UUID) -> Optional[dict]:
         with self._lock:
             job = self._jobs.get(job_id)
             return dict(job) if job else None
 
     def update_status(
         self,
-        job_id: str,
+        job_id: UUID,
         status: JobStatus,
         result_url: Optional[str] = None,
         error: Optional[str] = None,
@@ -48,7 +49,7 @@ class JobStore:
             if error is not None:
                 self._jobs[job_id]["error"] = error
 
-    def delete_job(self, job_id: str) -> None:
+    def delete_job(self, job_id: UUID) -> None:
         with self._lock:
             self._jobs.pop(job_id, None)
 
