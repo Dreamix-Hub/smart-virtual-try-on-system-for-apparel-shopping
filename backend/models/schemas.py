@@ -20,3 +20,11 @@ class Category(str, Enum):
     SHALWAR_KAMEEZ = "shalwar_kameez"
     WAISTCOAT = "waistcoat"
     SHARWANI = "sharwani"
+
+class JobResponse(BaseModel):
+    job_id: str
+    status: JobStatus
+    result_url: str | None = None
+    error: str | None = None
+    created_at: datetime
+    updated_at: datetime
