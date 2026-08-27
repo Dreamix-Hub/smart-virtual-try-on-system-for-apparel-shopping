@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile
 
 from common import SuccessResponse
-from models.schemas import ImageUploadResponse, JobResponse, JobStatus
+from models.schemas import JobResponse, JobStatus
 
 from services.cloudinary_service import image_upload
 from services.image_processor import read_file_size, standardize_dimension
