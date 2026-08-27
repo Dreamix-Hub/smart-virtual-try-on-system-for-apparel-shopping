@@ -6,6 +6,7 @@ from common.responses import (
 from common.image_exception import (
     LargeImageFileSizeException,
     InvalidImageFileFormatException,
+    ImageUploadFailedException
 )
 from common.job_exceptions import (
     JobNotFoundException
@@ -17,4 +18,5 @@ __all__ = [
     'LargeImageFileSizeException',
     'InvalidImageFileFormatException',
     'JobNotFoundException',
+    'ImageUploadFailedException',
 ]

@@ -18,3 +18,11 @@ class InvalidImageFileFormatException(AppException):
             code="INVALID_FILE_FORMAT",
             status_code=status.HTTP_400_BAD_REQUEST
         )
+
+class ImageUploadFailedException(AppException):
+     def __init__(self) -> None:
+        super().__init__(
+            msg="Failed to Upload Images",
+            code="IMAGE_UPLOAD_FAILED",
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
