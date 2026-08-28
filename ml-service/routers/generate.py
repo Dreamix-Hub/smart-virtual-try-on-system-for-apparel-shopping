@@ -5,7 +5,7 @@ from services.cloudinary_service import upload_result_image
 
 router = APIRouter(prefix="/generate", tags=['Generate Try-on'])
 
-import time
+import asyncio
 
 @router.post("", response_model=TryOnResultResponse)
 async def generate_tryon(request: BackendImagesUrlRequest):
@@ -18,6 +18,6 @@ async def generate_tryon(request: BackendImagesUrlRequest):
         folder='tryon/results'
     )
     
-    time.sleep(10)
+    await asyncio.sleep(10) # testing
     
     return TryOnResultResponse(result_url=result_url)

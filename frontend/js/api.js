@@ -6,7 +6,8 @@ async function uploadImages(formData) {
     if (!response.ok) {
         throw new Error('Failed to upload images');
     }
-    return response.json();
+    const result = await response.json();
+    return result.data;
 }
 
 async function getJobStatus(jobId) {
@@ -14,5 +15,6 @@ async function getJobStatus(jobId) {
     if (!response.ok) {
         throw new Error('Failed to get job status');
     }
-    return response.json();
+    const result = await response.json();
+    return result.data;
 }
