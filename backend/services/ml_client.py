@@ -1,9 +1,9 @@
 import httpx
 from config import settings
 from jobs.job_store import job_store, JobStatus
-from uuid import UUID
 
-async def ml_service(job_id: UUID, self_url: str, garment_url: str, category: str):
+
+async def ml_service(job_id: str, self_url: str, garment_url: str, category: str):
     """Pass data to ML inference. Immediately sets status to PROCESSING, 
     then updates to DONE with result_url or FAILED upon completion.
     """

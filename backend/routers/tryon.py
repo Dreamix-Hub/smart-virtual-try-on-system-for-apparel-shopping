@@ -65,7 +65,7 @@ async def upload_image(
     )
 
 @router.get('/{job_id}/status', response_model=SuccessResponse[JobResponse])
-async def check_job_status(job_id: UUID):
+async def check_job_status(job_id: str):
     job = job_store.get_job(job_id=job_id)
     
     if job is None:
