@@ -84,15 +84,21 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("garment_image", garmentFile);
     formData.append("category", categorySelect.value);
 
+    const loaderOverlay = document.getElementById("loader-overlay");
+    loaderOverlay.classList.add("active");
+
     try {
       const result = await uploadImages(formData);
+      
       if (result.job_id) {
         startPolling(result.job_id);
         // Optional UI update
       } else {
+        loaderOverlay.classList.remove("active");
         alert("Upload successful but no job ID returned.");
       }
     } catch (error) {
+      loaderOverlay.classList.remove("active");
       alert("Upload error: " + error.message);
     }
   });

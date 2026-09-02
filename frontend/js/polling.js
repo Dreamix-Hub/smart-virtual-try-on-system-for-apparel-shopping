@@ -29,4 +29,8 @@ function stopPolling() {
         clearInterval(pollingInterval);
         pollingInterval = null;
     }
+    const loaderOverlay = document.getElementById("loader-overlay");
+    if (loaderOverlay) {
+        loaderOverlay.classList.remove("active");
+    }
 }
