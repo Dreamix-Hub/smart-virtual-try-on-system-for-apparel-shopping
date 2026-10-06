@@ -47,7 +47,7 @@ list_of_files = [
     f"{folders['frontend']}/js/upload.js",
     f"{folders['frontend']}/js/polling.js",
     f"{folders['frontend']}/js/ui.js",
-
+    f"{folders['frontend']}/js/result.js",
     f"{folders['frontend']}/assets/images/",
 
     f"{folders['frontend']}/netlify.toml",

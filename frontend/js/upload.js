@@ -91,8 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const result = await uploadImages(formData);
       
       if (result.job_id) {
-        startPolling(result.job_id);
-        // Optional UI update
+        window.location.href = `result.html?job_id=${result.job_id}`;
       } else {
         loaderOverlay.classList.remove("active");
         alert("Upload successful but no job ID returned.");
